@@ -200,6 +200,7 @@ public class HiveQueryResultSet extends HiveBaseResultSet {
 
   @Override
   public void updateString(String columnLabel, String x)  {
+    System.out.println("Rename " + columnLabel + " to " + x);
     int idx  =  columnNames.indexOf(columnLabel);
     columnNames.set(idx, x);
     idx  =  normalizedColumnNames.indexOf(columnLabel.toLowerCase());

@@ -58,8 +58,16 @@ public class JDBCExperiments {
         ResultSet rs = null;
         System.out.println("-------------- getMetaData() -------------------------");
         DatabaseMetaData md = connection.getMetaData();
-        //ResultSet schema = metadata.getSchemas();
-        //ResultSet schema = metadata.getCatalogs();
+        ResultSet schema = md.getSchemas();
+        ResultSet tables = md.getTables(null, null, null, null);
+
+        while (schema.next()) {
+            System.out.println("Schemas : " + schema.getString(1));
+        }
+        while (tables.next()) {
+            System.out.println("tables : " + tables.getString(1) + " " + tables.getString(2));
+        }
+
         try {
             rs = md.getColumns(null, "public", "dim_acs", null);
             while (rs.next()) {

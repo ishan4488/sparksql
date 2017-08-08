@@ -23,6 +23,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.jar.Attributes;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.hive.metastore.TableType;
 import org.apache.hive.service.cli.GetInfoType;
 import org.apache.hive.service.cli.thrift.TCLIService;
@@ -51,7 +53,7 @@ import org.apache.thrift.TException;
  *
  */
 public class HiveDatabaseMetaData implements DatabaseMetaData {
-
+  public static final Log LOG = LogFactory.getLog(HiveDatabaseMetaData.class);
   private final HiveConnection connection;
   private final TCLIService.Iface client;
   private final TSessionHandle sessHandle;
@@ -236,6 +238,7 @@ public class HiveDatabaseMetaData implements DatabaseMetaData {
 
     // Hive/Spark Metadata isn't working so we use SQL Queries to get the Columns
     // http://download.oracle.com/otn_hosted_doc/jdeveloper/905/jdbc-javadoc/oracle/jdbc/OracleDatabaseMetaData.html#
+    System.out.println("getColumns()");
     HiveQueryResultSet result;
     Statement statement = connection.createStatement();
     String sql = "describe " + schemaPattern + "." + tableNamePattern;
@@ -692,6 +695,14 @@ public class HiveDatabaseMetaData implements DatabaseMetaData {
             .setStmtHandle(getTableResp.getOperationHandle())
             .build();
     */
+    LOG.warn("getTables() for " + schemaPattern);
+    if (schemaPattern == null || schemaPattern.isEmpty()) {
+      // if schemaPattern is null it means that the schemaPattern value should not be used to narrow the search
+      //schemaPattern = "%";
+      schemaPattern = connection.getSchema();
+      LOG.warn("Setting schema to " + schemaPattern);
+    }
+
     HiveQueryResultSet result;
     Statement statement = connection.createStatement();
     result = (HiveQueryResultSet)  statement.executeQuery("SHOW TABLES IN " + schemaPattern );
@@ -705,7 +716,6 @@ public class HiveDatabaseMetaData implements DatabaseMetaData {
     result.addColumn("TABLE_TYPE", "TABLE");
 
     return result;
-
   }
 
   /**

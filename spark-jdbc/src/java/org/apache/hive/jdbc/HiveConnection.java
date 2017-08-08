@@ -937,6 +937,7 @@ public class HiveConnection implements java.sql.Connection {
     if (isClosed) {
       throw new SQLException("Connection is closed");
     }
+    System.out.println("getMetaData()");
     return new HiveDatabaseMetaData(this, client, sessHandle);
   }
 
@@ -949,6 +950,7 @@ public class HiveConnection implements java.sql.Connection {
     if (isClosed) {
       throw new SQLException("Connection is closed");
     }
+    System.out.println("getSchema()");
     Statement stmt = createStatement();
     ResultSet res = stmt.executeQuery("SELECT current_database()");
     if (!res.next()) {
