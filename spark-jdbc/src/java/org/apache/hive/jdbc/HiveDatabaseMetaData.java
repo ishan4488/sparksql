@@ -607,6 +607,7 @@ public class HiveDatabaseMetaData implements DatabaseMetaData {
             .setStmtHandle(schemaResp.getOperationHandle())
             .build();
     */
+    System.out.println("getSchemas()");
     HiveQueryResultSet result;
     Statement statement = connection.createStatement();
     result = (HiveQueryResultSet)  statement.executeQuery("show databases");

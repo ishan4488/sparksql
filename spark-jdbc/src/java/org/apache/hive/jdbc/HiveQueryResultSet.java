@@ -198,6 +198,15 @@ public class HiveQueryResultSet extends HiveBaseResultSet {
     columnAttributes.add(new JdbcColumnAttributes());
   }
 
+  @Override
+  public void updateString(String columnLabel, String x)  {
+    int idx  =  columnNames.indexOf(columnLabel);
+    columnNames.set(idx, x);
+    idx  =  normalizedColumnNames.indexOf(columnLabel.toLowerCase());
+    normalizedColumnNames.set(idx, x.toLowerCase());
+  }
+
+
   protected HiveQueryResultSet(Builder builder) throws SQLException {
     this.statement = builder.statement;
     this.client = builder.client;
