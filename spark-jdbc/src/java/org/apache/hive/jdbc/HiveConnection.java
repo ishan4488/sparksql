@@ -1029,7 +1029,7 @@ public class HiveConnection implements java.sql.Connection {
     }
     boolean rc = false;
     try {
-      String productName = new HiveDatabaseMetaData(this, client, sessHandle, null)
+      String productName = new HiveDatabaseMetaData(this, client, sessHandle)
               .getDatabaseProductName();
       rc = true;
     } catch (SQLException e) {
