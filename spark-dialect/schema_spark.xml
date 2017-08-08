@@ -1,0 +1,2756 @@
+<Schema name="ECO Inquire">
+  <Dimension visible="true" highCardinality="false" name="Hardware">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Hardware" primaryKey="hw_id">
+      <Table name="dim_hardware" schema="public">
+      </Table>
+      <Level name="Manufacturer" visible="true" column="manufacturer" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="OUI" visible="true" column="oui" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ProductClass" visible="true" column="productclass" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ModelName" visible="true" column="modelname" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="HardwareVersion" visible="true" column="hardwareversion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="SoftwareVersion" visible="true" column="softwareversion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="ACS URL">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All ACS" primaryKey="acs_id">
+      <Table name="dim_acs" schema="public">
+      </Table>
+      <Level name="ACS URL" visible="true" column="url" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Timezone">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Timezones" primaryKey="tz_id">
+      <Table name="dim_timezone" schema="public">
+      </Table>
+      <Level name="Timezone" visible="true" column="name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="CLLI">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All CLLI" primaryKey="clli_id">
+      <Table name="dim_clli" schema="public">
+      </Table>
+      <Level name="CLLI" visible="true" column="name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Time">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Times" primaryKey="time_id">
+      <Table name="dim_time" schema="public">
+      </Table>
+      <Level name="Year" visible="false" column="year" type="Integer" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Month" visible="false" column="month" type="Integer" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[M]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Day" visible="true" column="day" type="Date" uniqueMembers="true" levelType="TimeDays" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[M].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Hour" visible="true" column="hour" type="Integer" uniqueMembers="false" levelType="TimeHours" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[M].[yyyy-MM-dd].[H]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Minute" visible="true" column="minute" type="Integer" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[M].[yyyy-MM-dd].[H].[m]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="InformTime">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Times" primaryKey="time_id">
+      <Table name="dim_informtime" schema="public">
+      </Table>
+      <Level name="Year" visible="false" column="year" type="Integer" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Month" visible="false" column="month" type="Integer" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[M]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Day" visible="true" column="day" type="Date" uniqueMembers="true" levelType="TimeDays" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[M].[yyyy-MM-dd]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Hour" visible="true" column="hour" type="Integer" uniqueMembers="false" levelType="TimeHours" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[M].[yyyy-MM-dd].[H]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Minute" visible="true" column="minute" type="Integer" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[[yyyy].[M].[yyyy-MM-dd].[H].[m]]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Geography">
+    <Hierarchy visible="true" hasAll="true" primaryKey="geo_id">
+      <Table name="dim_geography" schema="public">
+      </Table>
+      <Level name="Country" visible="true" column="country" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="Data.Role">
+            <![CDATA[Geography]]>
+          </Annotation>
+          <Annotation name="Geo.Role">
+            <![CDATA[country]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="Zip Code" visible="true" column="postal_code" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="Data.Role">
+            <![CDATA[Geography]]>
+          </Annotation>
+          <Annotation name="Geo.Role">
+            <![CDATA[zip]]>
+          </Annotation>
+          <Annotation name="Geo.RequiredParents">
+            <![CDATA[country]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="State" visible="true" column="state" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="IfBlankName">
+        <Annotations>
+          <Annotation name="Data.Role">
+            <![CDATA[Geography]]>
+          </Annotation>
+          <Annotation name="Geo.Role">
+            <![CDATA[state]]>
+          </Annotation>
+          <Annotation name="Geo.RequiredParents">
+            <![CDATA[country]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+      <Level name="City" visible="true" column="city" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="IfBlankName">
+        <Annotations>
+          <Annotation name="Data.Role">
+            <![CDATA[Geography]]>
+          </Annotation>
+          <Annotation name="Geo.Role">
+            <![CDATA[city]]>
+          </Annotation>
+          <Annotation name="Geo.RequiredParents">
+            <![CDATA[country,state]]>
+          </Annotation>
+        </Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Element">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Elements" primaryKey="element_id">
+      <Table name="element" schema="public">
+      </Table>
+      <Level name="Element ID" visible="true" column="element_id" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Serial Number" visible="true" column="serialnumber" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="MAC Address" visible="true" column="macaddress" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="WAN IP Address" visible="true" column="wanipaddress" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="BTN" visible="true" column="btn" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="FirstInformTimestamp" visible="true" column="first_inform" type="Timestamp" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="LastInformTimestamp" visible="true" column="last_inform" type="Timestamp" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Subscriber">
+    <Hierarchy visible="true" hasAll="true" primaryKey="subscriber_id">
+      <Table name="element" schema="public">
+      </Table>
+      <Level name="Subscriber ID" visible="true" column="subscriber_id" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="WTN" visible="true" column="wtn" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="USI" visible="true" column="usi" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ISPUsername" visible="true" column="ispusername" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Last Name" visible="true" column="lastname" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="First Name" visible="true" column="firstname" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="NTP">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Servers" primaryKey="element_id" primaryKeyTable="element_ntpserver">
+      <Join leftKey="ntp_id" rightKey="ntp_id">
+        <Table name="element_ntpserver" schema="public">
+        </Table>
+        <Table name="dim_ntpserver" schema="public">
+        </Table>
+      </Join>
+      <Level name="NTP Server" visible="true" table="dim_ntpserver" column="name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="IfBlankName">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="DNS">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Servers" primaryKey="element_id" primaryKeyTable="element_dnsserver">
+      <Join leftKey="dns_id" rightKey="dns_id">
+        <Table name="element_dnsserver" schema="public">
+        </Table>
+        <Table name="dim_dnsserver" schema="public">
+        </Table>
+      </Join>
+      <Level name="DNS Server" visible="true" table="dim_dnsserver" column="name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="SIP">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Servers" primaryKey="element_id" primaryKeyTable="element_sipserver">
+      <Join leftKey="sip_id" rightKey="sip_id">
+        <Table name="element_sipserver" schema="public">
+        </Table>
+        <Table name="dim_sipserver" schema="public">
+        </Table>
+      </Join>
+      <Level name="SIP Server" visible="true" table="dim_sipserver" column="name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Service">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Services" primaryKey="subscriber_id" primaryKeyTable="subscriber_service">
+      <Join leftKey="service_id" rightKey="service_id">
+        <Table name="subscriber_service" schema="public">
+        </Table>
+        <Table name="dim_service" schema="public">
+        </Table>
+      </Join>
+      <Level name="Service" visible="true" table="dim_service" column="name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="SubscriberTag">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Tags" primaryKey="subscriber_id" primaryKeyTable="subscriber_tag">
+      <Join leftKey="tag_id" rightKey="tag_id">
+        <Table name="subscriber_tag" schema="public">
+        </Table>
+        <Table name="dim_subscribertag" schema="public">
+        </Table>
+      </Join>
+      <Level name="Tag" visible="true" table="dim_subscribertag" column="name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="ElementTag">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Tags" primaryKey="element_id" primaryKeyTable="element_tag">
+      <Join leftKey="tag_id" rightKey="tag_id">
+        <Table name="element_tag" schema="public">
+        </Table>
+        <Table name="dim_elementtag" schema="public">
+        </Table>
+      </Join>
+      <Level name="Tag" visible="true" table="dim_elementtag" column="name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="DeviceGroup">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Groups" primaryKey="element_id" primaryKeyTable="element_group">
+      <Join leftKey="group_id" rightKey="group_id">
+        <Table name="element_group" schema="public">
+        </Table>
+        <Table name="dim_elementgroup" schema="public">
+        </Table>
+      </Join>
+      <Level name="Device Group" visible="true" table="dim_elementgroup" column="name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="DeviceClassifier">
+    <Hierarchy visible="true" hasAll="true" allMemberName="All Groups" primaryKey="element_id" primaryKeyTable="element_classifier">
+      <Join leftKey="classifier_id" rightKey="classifier_id">
+        <Table name="element_classifier" schema="public">
+        </Table>
+        <Table name="dim_elementclassifier" schema="public">
+        </Table>
+      </Join>
+      <Level name="Device Classifier" visible="true" table="dim_elementclassifier" column="name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Element Data" visible="true" cache="true" enabled="true">
+    <Table name="element" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Element">
+      <Hierarchy visible="true" hasAll="true">
+        <Level name="Element ID" visible="true" column="element_id" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Serial Number" visible="true" column="serialnumber" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="MAC Address" visible="true" column="macaddress" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="WAN IP Address" visible="true" column="wanipaddress" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="BTN" visible="true" column="btn" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="FirstInformTimestamp" visible="true" column="first_inform" type="Timestamp" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="LastInformTimestamp" visible="true" column="last_inform" type="Timestamp" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Hardware" name="Hardware" visible="true" foreignKey="hw_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Geography" name="Geography" visible="true" foreignKey="geo_id" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Subscriber">
+      <Hierarchy visible="true" hasAll="true">
+        <Level name="Subscriber ID" visible="true" column="subscriber_id" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="WTN" visible="true" column="wtn" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="USI" visible="true" column="usi" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="ISPUsername" visible="true" column="ispusername" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Last Name" visible="true" column="lastname" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="First Name" visible="true" column="firstname" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="NTP" name="NTP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DNS" name="DNS" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Service" name="Service" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SIP" name="SIP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ElementTag" name="ElementTag" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SubscriberTag" name="SubscriberTag" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CLLI" name="CLLI" visible="true" foreignKey="clli_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceGroup" name="DeviceGroup" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceClassifier" name="DeviceClassifier" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="InformTime" name="First Inform" visible="true" foreignKey="first_inform_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="InformTime" name="Last Inform" visible="true" foreignKey="last_inform_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ACS URL" name="ACS URL" visible="true" foreignKey="acs_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Timezone" name="Timezone" visible="true" foreignKey="tz_id" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Subscriber Count" column="subscriber_id" datatype="Integer" formatString="#,###;(#,###)" aggregator="distinct count">
+    </Measure>
+    <Measure name="Element Count" column="element_id" datatype="Integer" formatString="#,###;(#,###)" aggregator="distinct count">
+    </Measure>
+  </Cube>
+  <Cube name="Firmware Upgrade" visible="true" cache="true" enabled="true">
+    <Table name="firmware_upgrade" schema="public">
+    </Table>
+    <DimensionUsage source="Element" name="Element" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Geography" name="Geography" visible="true" foreignKey="geo_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Hardware" name="Hardware" visible="true" foreignKey="hw_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Subscriber" name="Subscriber" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DNS" name="DNS" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="NTP" name="NTP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Service" name="Service" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SIP" name="SIP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ElementTag" name="ElementTag" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SubscriberTag" name="SubscriberTag" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Time" name="Enqueued" visible="true" foreignKey="time_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CLLI" name="CLLI" visible="true" foreignKey="clli_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceGroup" name="DeviceGroup" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceClassifier" name="DeviceClassifier" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ACS URL" name="ACS URL" visible="true" foreignKey="acs_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Timezone" name="Timezone" visible="true" foreignKey="tz_id" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Status">
+      <Hierarchy visible="true" hasAll="true">
+        <Level name="Firmware Upgrade Status" visible="true" column="status" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+          <NameExpression>
+            <SQL dialect="generic">
+              <![CDATA[case status when 'F' then 'Failed'
+when 'E' then 'Enqueued'
+when 'C' then 'Completed'
+when 'T' then 'Terminated'
+when 'S' then 'Skipped'
+when 'N' then 'Not Applicable'
+else 'Unknown' end]]>
+            </SQL>
+          </NameExpression>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="FirmwareCampaign">
+      <Hierarchy visible="true" hasAll="true">
+        <Level name="Name" visible="true" column="firmware_name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" description="Firmware campaign name">
+        </Level>
+        <Level name="Version" visible="true" column="firmware_version" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" description="Firmware campaign version">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Element Count" column="element_id" datatype="Integer" formatString="#,###;(#,###)" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="Subscriber Count" column="subscriber_id" datatype="Integer" formatString="#,###;(#,###)" aggregator="distinct count" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="Parameter Data" visible="true" cache="true" enabled="true">
+    <Table name="parameter_data" schema="public">
+    </Table>
+    <DimensionUsage source="Element" name="Element" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Geography" name="Geography" visible="true" foreignKey="geo_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Hardware" name="Hardware" visible="true" foreignKey="hw_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Subscriber" name="Subscriber" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DNS" name="DNS" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="NTP" name="NTP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Service" name="Service" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SIP" name="SIP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ElementTag" name="ElementTag" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SubscriberTag" name="SubscriberTag" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CLLI" name="CLLI" visible="true" foreignKey="clli_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceGroup" name="DeviceGroup" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceClassifier" name="DeviceClassifier" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ACS URL" name="ACS URL" visible="true" foreignKey="acs_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Timezone" name="Timezone" visible="true" foreignKey="tz_id" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Element Count" column="element_id" datatype="Integer" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="Subscriber Count" column="subscriber_id" datatype="Integer" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="ATUCCRC Errors Quarter Hour" column="atuccrcerrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Bytes Received" column="bytesreceived" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Bytes Sent" column="bytessent" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Calls Dropped" column="callsdropped" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="CRC Errors" column="crcerrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="CRC Errors Quarter Hour" column="crcerrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="CRC Errors Showtime" column="crcerrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Downstream Attenuation" column="downattenuation" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Downstream Max Kb Rate" column="downmaxratekb" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Downstream SNR" column="downnoiseratio" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Downstream Current Rate" column="downstreamcurrrate" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Downstream Power" column="downstreampower" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="ES Errors" column="eserrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="ES Errors Quarter Hour" column="eserrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="ES Errors Showtime" column="eserrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Ethernet Rx Bytes" column="ethernetrxbytes" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Ethernet Tx Bytes" column="ethernettxbytes" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="FEC Errors" column="fecerrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="FEC Errors Quarter Hour" column="fecerrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="FEC Errors Showtime" column="fecerrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="HEC Errors" column="hecerrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="HEC Errors Quarter Hour" column="hecerrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="HEC Errors Showtime" column="hecerrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Init Timeouts" column="inittimeout" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Init Timeouts Quarter Hour" column="inittimeoutquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Init Timeouts Showtime" column="inittimeoutshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Link Retrain" column="linkretrain" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Link Retrain Quarter Hour" column="linkretrainquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Link Retrain Showtime" column="linkretrainshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="LOF Errors" column="loferrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="LOF Errors Quarter Hour" column="loferrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="LOF Errors Showtime" column="loferrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Total Memory" column="memoryfree" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Free Memory" column="memorytotal" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Number of Hosts" column="numberofhosts" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Packets Errored" column="wifipacketserrored" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Packets Dropped" column="wifipacketsdropped" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Packets Received" column="wifipacketsreceived" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Packets Sent" column="wifipacketssent" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Total Associations" column="wifitotalassociations" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Total Bytes Received" column="wifitotalbytesreceived" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Total Bytes Sent" column="wifitotalbytessent" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="SES Errors" column="seserrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="SES Errors Quarter Hour" column="seserrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="SES Errors Showtime" column="seserrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Showtime Start" column="showtimestart" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Upstream Attenuation" column="upattenuation" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Upstream Max Kb Rate" column="upmaxratekb" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Upstream SNR" column="upnoiseratio" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Upstream Current Rate" column="upstreamcurrrate" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Upstream Power" column="upstreampower" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Uptime" column="uptime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 1 Far-end Jitter" column="voiceprofile1farendjitter" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 1 Incoming Calls Failed" column="voiceprofile1incomingcallsfailed" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 1 Latency" column="voiceprofile1latency" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 1 Packets Lost" column="voiceprofile1packetslost" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 1 Receive Jitter" column="voiceprofile1receivejitter" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 2 Far-end Jitter" column="voiceprofile2farendjitter" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 2 Incoming Calls Failed" column="voiceprofile2incomingcallsfailed" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 2 Latency" column="voiceprofile2latency" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 2 Packets Lost" column="voiceprofile2packetslost" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 2 Receive Jitter" column="voiceprofile2receivejitter" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="Parameter History" visible="true" defaultMeasure="uptime" cache="true" enabled="true">
+    <Table name="parameter_history" schema="public">
+      <AggName name="agg_nodev_parameter_history" ignorecase="true">
+        <AggFactCount column="fact_count">
+        </AggFactCount>
+        <AggForeignKey factColumn="geo_id" aggColumn="geo_id">
+        </AggForeignKey>
+        <AggForeignKey factColumn="hw_id" aggColumn="hw_id">
+        </AggForeignKey>
+        <AggForeignKey factColumn="acs_id" aggColumn="acs_id">
+        </AggForeignKey>
+        <AggForeignKey factColumn="tz_id" aggColumn="tz_id">
+        </AggForeignKey>
+        <AggMeasure column="element_count" name="[Measures].[Element Count]">
+        </AggMeasure>
+        <AggMeasure column="subscriber_count" name="[Measures].[Subscriber Count]">
+        </AggMeasure>
+        <AggMeasure column="atuccrcerrorsquarterhour" name="[Measures].[ATUCCRC Errors Quarter Hour]">
+        </AggMeasure>
+        <AggMeasure column="bytesreceived" name="[Measures].[Bytes Received]">
+        </AggMeasure>
+        <AggMeasure column="bytessent" name="[Measures].[Bytes Sent]">
+        </AggMeasure>
+        <AggMeasure column="callsdropped" name="[Measures].[Calls Dropped]">
+        </AggMeasure>
+        <AggMeasure column="crcerrors" name="[Measures].[CRC Errors]">
+        </AggMeasure>
+        <AggMeasure column="crcerrorsquarterhour" name="[Measures].[CRC Errors Quarter Hour]">
+        </AggMeasure>
+        <AggMeasure column="crcerrorsshowtime" name="[Measures].[CRC Errors Showtime]">
+        </AggMeasure>
+        <AggMeasure column="downattenuation" name="[Measures].[Downstream Attenuation]">
+        </AggMeasure>
+        <AggMeasure column="downmaxratekb" name="[Measures].[Downstream Max Kb Rate]">
+        </AggMeasure>
+        <AggMeasure column="downnoiseratio" name="[Measures].[Downstream SNR]">
+        </AggMeasure>
+        <AggMeasure column="downstreamcurrrate" name="[Measures].[Downstream Current Rate]">
+        </AggMeasure>
+        <AggMeasure column="downstreampower" name="[Measures].[Downstream Power]">
+        </AggMeasure>
+        <AggMeasure column="eserrors" name="[Measures].[ES Errors]">
+        </AggMeasure>
+        <AggMeasure column="eserrorsquarterhour" name="[Measures].[ES Errors Quarter Hour]">
+        </AggMeasure>
+        <AggMeasure column="eserrorsshowtime" name="[Measures].[ES Errors Showtime]">
+        </AggMeasure>
+        <AggMeasure column="ethernetrxbytes" name="[Measures].[Ethernet Rx Bytes]">
+        </AggMeasure>
+        <AggMeasure column="ethernettxbytes" name="[Measures].[Ethernet Tx Bytes]">
+        </AggMeasure>
+        <AggMeasure column="fecerrors" name="[Measures].[FEC Errors]">
+        </AggMeasure>
+        <AggMeasure column="fecerrorsquarterhour" name="[Measures].[FEC Errors Quarter Hour]">
+        </AggMeasure>
+        <AggMeasure column="fecerrorsshowtime" name="[Measures].[FEC Errors Showtime]">
+        </AggMeasure>
+        <AggMeasure column="hecerrors" name="[Measures].[HEC Errors]">
+        </AggMeasure>
+        <AggMeasure column="hecerrorsquarterhour" name="[Measures].[HEC Errors Quarter Hour]">
+        </AggMeasure>
+        <AggMeasure column="hecerrorsshowtime" name="[Measures].[HEC Errors Showtime]">
+        </AggMeasure>
+        <AggMeasure column="inittimeout" name="[Measures].[Init Timeouts]">
+        </AggMeasure>
+        <AggMeasure column="inittimeoutquarterhour" name="[Measures].[Init Timeouts Quarter Hour]">
+        </AggMeasure>
+        <AggMeasure column="inittimeoutshowtime" name="[Measures].[Init Timeouts Showtime]">
+        </AggMeasure>
+        <AggMeasure column="linkretrain" name="[Measures].[Link Retrain]">
+        </AggMeasure>
+        <AggMeasure column="linkretrainquarterhour" name="[Measures].[Link Retrain Quarter Hour]">
+        </AggMeasure>
+        <AggMeasure column="linkretrainshowtime" name="[Measures].[Link Retrain Showtime]">
+        </AggMeasure>
+        <AggMeasure column="loferrors" name="[Measures].[LOF Errors]">
+        </AggMeasure>
+        <AggMeasure column="loferrorsquarterhour" name="[Measures].[LOF Errors Quarter Hour]">
+        </AggMeasure>
+        <AggMeasure column="loferrorsshowtime" name="[Measures].[LOF Errors Showtime]">
+        </AggMeasure>
+        <AggMeasure column="memoryfree" name="[Measures].[Total Memory]">
+        </AggMeasure>
+        <AggMeasure column="memorytotal" name="[Measures].[Free Memory]">
+        </AggMeasure>
+        <AggMeasure column="numberofhosts" name="[Measures].[Number of Hosts]">
+        </AggMeasure>
+        <AggMeasure column="wifipacketserrored" name="[Measures].[Wi-Fi Packets Errored]">
+        </AggMeasure>
+        <AggMeasure column="wifipacketsdropped" name="[Measures].[Wi-Fi Packets Dropped]">
+        </AggMeasure>
+        <AggMeasure column="wifipacketsreceived" name="[Measures].[Wi-Fi Packets Received]">
+        </AggMeasure>
+        <AggMeasure column="wifipacketssent" name="[Measures].[Wi-Fi Packets Sent]">
+        </AggMeasure>
+        <AggMeasure column="wifitotalassociations" name="[Measures].[Wi-Fi Total Associations]">
+        </AggMeasure>
+        <AggMeasure column="wifitotalbytesreceived" name="[Measures].[Wi-Fi Total Bytes Received]">
+        </AggMeasure>
+        <AggMeasure column="wifitotalbytessent" name="[Measures].[Wi-Fi Total Bytes Sent]">
+        </AggMeasure>
+        <AggMeasure column="seserrors" name="[Measures].[SES Errors]">
+        </AggMeasure>
+        <AggMeasure column="seserrorsquarterhour" name="[Measures].[SES Errors Quarter Hour]">
+        </AggMeasure>
+        <AggMeasure column="seserrorsshowtime" name="[Measures].[SES Errors Showtime]">
+        </AggMeasure>
+        <AggMeasure column="showtimestart" name="[Measures].[Showtime Start]">
+        </AggMeasure>
+        <AggMeasure column="upattenuation" name="[Measures].[Upstream Attenuation]">
+        </AggMeasure>
+        <AggMeasure column="upmaxratekb" name="[Measures].[Upstream Max Kb Rate]">
+        </AggMeasure>
+        <AggMeasure column="upnoiseratio" name="[Measures].[Upstream SNR]">
+        </AggMeasure>
+        <AggMeasure column="upstreamcurrrate" name="[Measures].[Upstream Current Rate]">
+        </AggMeasure>
+        <AggMeasure column="upstreampower" name="[Measures].[Upstream Power]">
+        </AggMeasure>
+        <AggMeasure column="uptime" name="[Measures].[Uptime]">
+        </AggMeasure>
+        <AggMeasure column="voiceprofile1farendjitter" name="[Measures].[Voice 1 Far-end Jitter]">
+        </AggMeasure>
+        <AggMeasure column="voiceprofile1incomingcallsfailed" name="[Measures].[Voice 1 Incoming Calls Failed]">
+        </AggMeasure>
+        <AggMeasure column="voiceprofile1latency" name="[Measures].[Voice 1 Latency]">
+        </AggMeasure>
+        <AggMeasure column="voiceprofile1packetslost" name="[Measures].[Voice 1 Packets Lost]">
+        </AggMeasure>
+        <AggMeasure column="voiceprofile1receivejitter" name="[Measures].[Voice 1 Receive Jitter]">
+        </AggMeasure>
+        <AggMeasure column="voiceprofile2farendjitter" name="[Measures].[Voice 2 Far-end Jitter]">
+        </AggMeasure>
+        <AggMeasure column="voiceprofile2incomingcallsfailed" name="[Measures].[Voice 2 Incoming Calls Failed]">
+        </AggMeasure>
+        <AggMeasure column="voiceprofile2latency" name="[Measures].[Voice 2 Latency]">
+        </AggMeasure>
+        <AggMeasure column="voiceprofile2packetslost" name="[Measures].[Voice 2 Packets Lost]">
+        </AggMeasure>
+        <AggMeasure column="voiceprofile2receivejitter" name="[Measures].[Voice 2 Receive Jitter]">
+        </AggMeasure>
+        <AggLevel column="year" name="[Time].[Year]" collapsed="true">
+        </AggLevel>
+        <AggLevel column="month" name="[Time].[Month]" collapsed="true">
+        </AggLevel>
+        <AggLevel column="day" name="[Time].[Day]" collapsed="true">
+        </AggLevel>
+        <AggLevel column="service_name" name="[Service].[Service]" collapsed="true">
+        </AggLevel>
+      </AggName>
+    </Table>
+    <DimensionUsage source="Time" name="Time" visible="true" foreignKey="time_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Element" name="Element" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Geography" name="Geography" visible="true" foreignKey="geo_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Hardware" name="Hardware" visible="true" foreignKey="hw_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Subscriber" name="Subscriber" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DNS" name="DNS" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="NTP" name="NTP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Service" name="Service" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SIP" name="SIP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ElementTag" name="ElementTag" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SubscriberTag" name="SubscriberTag" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CLLI" name="CLLI" visible="true" foreignKey="clli_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceGroup" name="DeviceGroup" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceClassifier" name="DeviceClassifier" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ACS URL" name="ACS URL" visible="true" foreignKey="acs_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Timezone" name="Timezone" visible="true" foreignKey="tz_id" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Element Count" column="element_id" datatype="Integer" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="Subscriber Count" column="subscriber_id" datatype="Integer" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="ATUCCRC Errors Quarter Hour" column="atuccrcerrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Bytes Received" column="bytesreceived" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Bytes Sent" column="bytessent" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Calls Dropped" column="callsdropped" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="CRC Errors" column="crcerrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="CRC Errors Quarter Hour" column="crcerrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="CRC Errors Showtime" column="crcerrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Downstream Attenuation" column="downattenuation" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Downstream Max Kb Rate" column="downmaxratekb" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Downstream SNR" column="downnoiseratio" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Downstream Current Rate" column="downstreamcurrrate" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Downstream Power" column="downstreampower" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="ES Errors" column="eserrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="ES Errors Quarter Hour" column="eserrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="ES Errors Showtime" column="eserrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Ethernet Rx Bytes" column="ethernetrxbytes" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Ethernet Tx Bytes" column="ethernettxbytes" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="FEC Errors" column="fecerrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="FEC Errors Quarter Hour" column="fecerrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="FEC Errors Showtime" column="fecerrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="HEC Errors" column="hecerrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="HEC Errors Quarter Hour" column="hecerrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="HEC Errors Showtime" column="hecerrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Init Timeouts" column="inittimeout" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Init Timeouts Quarter Hour" column="inittimeoutquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Init Timeouts Showtime" column="inittimeoutshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Link Retrain" column="linkretrain" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Link Retrain Quarter Hour" column="linkretrainquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Link Retrain Showtime" column="linkretrainshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="LOF Errors" column="loferrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="LOF Errors Quarter Hour" column="loferrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="LOF Errors Showtime" column="loferrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Total Memory" column="memoryfree" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Free Memory" column="memorytotal" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Number of Hosts" column="numberofhosts" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Packets Errored" column="wifipacketserrored" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Packets Dropped" column="wifipacketsdropped" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Packets Received" column="wifipacketsreceived" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Packets Sent" column="wifipacketssent" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Total Associations" column="wifitotalassociations" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Total Bytes Received" column="wifitotalbytesreceived" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wi-Fi Total Bytes Sent" column="wifitotalbytessent" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="SES Errors" column="seserrors" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="SES Errors Quarter Hour" column="seserrorsquarterhour" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="SES Errors Showtime" column="seserrorsshowtime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Showtime Start" column="showtimestart" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Upstream Attenuation" column="upattenuation" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Upstream Max Kb Rate" column="upmaxratekb" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Upstream SNR" column="upnoiseratio" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Upstream Current Rate" column="upstreamcurrrate" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Upstream Power" column="upstreampower" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Uptime" column="uptime" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 1 Far-end Jitter" column="voiceprofile1farendjitter" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 1 Incoming Calls Failed" column="voiceprofile1incomingcallsfailed" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 1 Latency" column="voiceprofile1latency" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 1 Packets Lost" column="voiceprofile1packetslost" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 1 Receive Jitter" column="voiceprofile1receivejitter" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 2 Far-end Jitter" column="voiceprofile2farendjitter" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 2 Incoming Calls Failed" column="voiceprofile2incomingcallsfailed" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 2 Latency" column="voiceprofile2latency" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 2 Packets Lost" column="voiceprofile2packetslost" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Voice 2 Receive Jitter" column="voiceprofile2receivejitter" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="Diagnostic Data" visible="true" defaultMeasure="HSIA Red" cache="true" enabled="true">
+    <Table name="diagnostic_data" schema="public">
+    </Table>
+    <DimensionUsage source="Element" name="Element" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Geography" name="Geography" visible="true" foreignKey="geo_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Hardware" name="Hardware" visible="true" foreignKey="hw_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Subscriber" name="Subscriber" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DNS" name="DNS" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="NTP" name="NTP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Service" name="Service" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SIP" name="SIP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ElementTag" name="ElementTag" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SubscriberTag" name="SubscriberTag" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CLLI" name="CLLI" visible="true" foreignKey="clli_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceGroup" name="DeviceGroup" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceClassifier" name="DeviceClassifier" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ACS URL" name="ACS URL" visible="true" foreignKey="acs_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Timezone" name="Timezone" visible="true" foreignKey="tz_id" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Element Count" column="element_id" datatype="Integer" formatString="#,###;(#,###)" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="Subscriber Count" column="subscriber_id" datatype="Integer" formatString="#,###;(#,###)" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="Less than 15 Minutes CPE Uptime Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_cpeuptime_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Less than 15 Minutes CPE Uptime Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_cpeuptime_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Less than 15 Minutes CPE Uptime Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_cpeuptime_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Downstream Bandwidth Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_downstreambandwidthdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Downstream Bandwidth Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_downstreambandwidthdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Downstream Bandwidth Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_downstreambandwidthdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="ES Errors Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_eserrorsdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="ES Errors Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_eserrorsdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="ES Errors Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_eserrorsdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Quarter Hour Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutquarterhourdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Quarter Hour Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutquarterhourdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Quarter Hour Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutquarterhourdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Link Retrain Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_linkretraindiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Link Retrain Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_linkretraindiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Link Retrain Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_linkretraindiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="LOF Errors Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_loferrordiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="LOF Errors Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_loferrordiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="LOF Errors Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_loferrordiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Number of Hosts Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_numberofhosts_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Number of Hosts Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_numberofhosts_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Number of Hosts Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_numberofhosts_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Reboots in the Last Week Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_rebootsinthelastweek_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Reboots in the Last Week Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_rebootsinthelastweek_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Reboots in the Last Week Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_rebootsinthelastweek_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="SES Errors Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_seserrordiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="SES Errors Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_seserrordiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="SES Errors Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_seserrordiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy 2.4 GHz Wifi Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthy24_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy 2.4 GHz Wifi Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthy24_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy 2.4 GHz Wifi Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthy24_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy CPE Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthycpe_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy CPE Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthycpe_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy CPE Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthycpe_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy DSL Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthydsl_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy DSL Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthydsl_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy DSL Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthydsl_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unsecured 2.4 GHz WiFi Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unsecure24_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unsecured 2.4 GHz WiFi Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unsecure24_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unsecured 2.4 GHz WiFi Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unsecure24_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Upstream Bandwidth Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_upstreambandwidthdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Upstream Bandwidth Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_upstreambandwidthdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Upstream Bandwidth Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_upstreambandwidthdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="CRC Errors Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_crcerrorsdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="CRC Errors Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_crcerrorsdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="CRC Errors Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_crcerrorsdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DHCP Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dhcpdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DHCP Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dhcpdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DHCP Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dhcpdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DNS Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dnsdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DNS Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dnsdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DNS Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dnsdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="FEC Errors Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_fecerrorsdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="FEC Errors Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_fecerrorsdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="FEC Errors Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_fecerrorsdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="High Upstream Utilization Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_highupstreamutilizationdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="High Upstream Utilization Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_highupstreamutilizationdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="High Upstream Utilization Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_highupstreamutilizationdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Latency Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_latencydiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Latency Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_latencydiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Latency Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_latencydiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Missing Microfilter Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_missingmicrofilterdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Missing Microfilter Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_missingmicrofilterdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Missing Microfilter Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_missingmicrofilterdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Total Wireless Associations Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_totalwirelessassociations_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Total Wireless Associations Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_totalwirelessassociations_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Total Wireless Associations Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_totalwirelessassociations_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Uptime Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_uptimediagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Uptime Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_uptimediagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Uptime Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_uptimediagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless PSK Failures Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesspskfailures_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless PSK Failures Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesspskfailures_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless PSK Failures Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesspskfailures_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Security Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesssecuritydiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Security Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesssecuritydiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Security Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesssecuritydiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless SSID Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessssiddiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless SSID Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessssiddiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless SSID Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessssiddiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Status Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessstatusdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Status Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessstatusdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Status Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessstatusdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 1 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callquality_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 1 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callquality_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 1 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callquality_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 2 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualityline1_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 2 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualityline1_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 2 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualityline1_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 1 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualitypacketlost_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 1 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualitypacketlost_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 1 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualitypacketlost_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 2 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_failedcallsline2_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 2 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_failedcallsline2_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 2 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_failedcallsline2_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 2 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_packetlostline2_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 2 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_packetlostline2_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 2 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_packetlostline2_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 1 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_percentfailedcalls_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 1 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_percentfailedcalls_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 1 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_percentfailedcalls_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 2 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_statusline2_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 2 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_statusline2_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 2 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_statusline2_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 1 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_voicestatusdiag_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 1 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_voicestatusdiag_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 1 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_voicestatusdiag_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+  </Cube>
+  <Cube name="Diagnostic History" visible="true" defaultMeasure="ES Errors Red" cache="true" enabled="true">
+    <Table name="diagnostic_history" schema="public">
+      <AggName name="agg_nodev_diagnostic_history" ignorecase="true">
+        <AggFactCount column="fact_count">
+        </AggFactCount>
+        <AggForeignKey factColumn="geo_id" aggColumn="geo_id">
+        </AggForeignKey>
+        <AggForeignKey factColumn="hw_id" aggColumn="hw_id">
+        </AggForeignKey>
+        <AggForeignKey factColumn="acs_id" aggColumn="acs_id">
+        </AggForeignKey>
+        <AggForeignKey factColumn="tz_id" aggColumn="tz_id">
+        </AggForeignKey>
+        <AggMeasure column="element_count" name="[Measures].[Element Count]">
+        </AggMeasure>
+        <AggMeasure column="subscriber_count" name="[Measures].[Subscriber Count]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_cpeuptime_green" name="[Measures].[Less than 15 Minutes CPE Uptime Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_cpeuptime_yellow" name="[Measures].[Less than 15 Minutes CPE Uptime Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_cpeuptime_red" name="[Measures].[Less than 15 Minutes CPE Uptime Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_downstreambandwidthdiagnostic_green" name="[Measures].[Downstream Bandwidth Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_downstreambandwidthdiagnostic_yellow" name="[Measures].[Downstream Bandwidth Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_downstreambandwidthdiagnostic_red" name="[Measures].[Downstream Bandwidth Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_eserrorsdiagnostic_green" name="[Measures].[ES Errors Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_eserrorsdiagnostic_yellow" name="[Measures].[ES Errors Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_eserrorsdiagnostic_red" name="[Measures].[ES Errors Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_inittimeoutdiagnostic_green" name="[Measures].[Init Timeouts Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_inittimeoutdiagnostic_yellow" name="[Measures].[Init Timeouts Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_inittimeoutdiagnostic_red" name="[Measures].[Init Timeouts Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_inittimeoutquarterhourdiagnostic_green" name="[Measures].[Init Timeouts Quarter Hour Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_inittimeoutquarterhourdiagnostic_yellow" name="[Measures].[Init Timeouts Quarter Hour Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_inittimeoutquarterhourdiagnostic_red" name="[Measures].[Init Timeouts Quarter Hour Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_linkretraindiagnostic_green" name="[Measures].[Link Retrain Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_linkretraindiagnostic_yellow" name="[Measures].[Link Retrain Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_linkretraindiagnostic_red" name="[Measures].[Link Retrain Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_loferrordiagnostic_green" name="[Measures].[LOF Errors Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_loferrordiagnostic_yellow" name="[Measures].[LOF Errors Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_loferrordiagnostic_red" name="[Measures].[LOF Errors Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_numberofhosts_green" name="[Measures].[Number of Hosts Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_numberofhosts_yellow" name="[Measures].[Number of Hosts Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_numberofhosts_red" name="[Measures].[Number of Hosts Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_rebootsinthelastweek_green" name="[Measures].[Reboots in the Last Week Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_rebootsinthelastweek_yellow" name="[Measures].[Reboots in the Last Week Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_rebootsinthelastweek_red" name="[Measures].[Reboots in the Last Week Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_seserrordiagnostic_green" name="[Measures].[SES Errors Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_seserrordiagnostic_yellow" name="[Measures].[SES Errors Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_seserrordiagnostic_red" name="[Measures].[SES Errors Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unhealthy24_green" name="[Measures].[Unhealthy 2.4 GHz Wifi Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unhealthy24_yellow" name="[Measures].[Unhealthy 2.4 GHz Wifi Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unhealthy24_red" name="[Measures].[Unhealthy 2.4 GHz Wifi Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unhealthycpe_green" name="[Measures].[Unhealthy CPE Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unhealthycpe_yellow" name="[Measures].[Unhealthy CPE Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unhealthycpe_red" name="[Measures].[Unhealthy CPE Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unhealthydsl_green" name="[Measures].[Unhealthy DSL Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unhealthydsl_yellow" name="[Measures].[Unhealthy DSL Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unhealthydsl_red" name="[Measures].[Unhealthy DSL Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unsecure24_green" name="[Measures].[Unsecured 2.4 GHz WiFi Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unsecure24_yellow" name="[Measures].[Unsecured 2.4 GHz WiFi Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_unsecure24_red" name="[Measures].[Unsecured 2.4 GHz WiFi Red]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_upstreambandwidthdiagnostic_green" name="[Measures].[Upstream Bandwidth Green]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_upstreambandwidthdiagnostic_yellow" name="[Measures].[Upstream Bandwidth Yellow]">
+        </AggMeasure>
+        <AggMeasure column="collectdiags_upstreambandwidthdiagnostic_red" name="[Measures].[Upstream Bandwidth Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_crcerrorsdiagnostic_green" name="[Measures].[CRC Errors Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_crcerrorsdiagnostic_yellow" name="[Measures].[CRC Errors Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_crcerrorsdiagnostic_red" name="[Measures].[CRC Errors Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_dhcpdiagnostic_green" name="[Measures].[DHCP Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_dhcpdiagnostic_yellow" name="[Measures].[DHCP Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_dhcpdiagnostic_red" name="[Measures].[DHCP Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_dnsdiagnostic_green" name="[Measures].[DNS Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_dnsdiagnostic_yellow" name="[Measures].[DNS Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_dnsdiagnostic_red" name="[Measures].[DNS Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_fecerrorsdiagnostic_green" name="[Measures].[FEC Errors Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_fecerrorsdiagnostic_yellow" name="[Measures].[FEC Errors Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_fecerrorsdiagnostic_red" name="[Measures].[FEC Errors Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_highupstreamutilizationdiagnostic_green" name="[Measures].[High Upstream Utilization Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_highupstreamutilizationdiagnostic_yellow" name="[Measures].[High Upstream Utilization Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_highupstreamutilizationdiagnostic_red" name="[Measures].[High Upstream Utilization Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_latencydiagnostic_green" name="[Measures].[Latency Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_latencydiagnostic_yellow" name="[Measures].[Latency Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_latencydiagnostic_red" name="[Measures].[Latency Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_missingmicrofilterdiagnostic_green" name="[Measures].[Missing Microfilter Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_missingmicrofilterdiagnostic_yellow" name="[Measures].[Missing Microfilter Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_missingmicrofilterdiagnostic_red" name="[Measures].[Missing Microfilter Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_totalwirelessassociations_green" name="[Measures].[Total Wireless Associations Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_totalwirelessassociations_yellow" name="[Measures].[Total Wireless Associations Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_totalwirelessassociations_red" name="[Measures].[Total Wireless Associations Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_uptimediagnostic_green" name="[Measures].[Uptime Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_uptimediagnostic_yellow" name="[Measures].[Uptime Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_uptimediagnostic_red" name="[Measures].[Uptime Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelesspskfailures_green" name="[Measures].[Wireless PSK Failures Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelesspskfailures_yellow" name="[Measures].[Wireless PSK Failures Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelesspskfailures_red" name="[Measures].[Wireless PSK Failures Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelesssecuritydiagnostic_green" name="[Measures].[Wireless Security Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelesssecuritydiagnostic_yellow" name="[Measures].[Wireless Security Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelesssecuritydiagnostic_red" name="[Measures].[Wireless Security Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelessssiddiagnostic_green" name="[Measures].[Wireless SSID Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelessssiddiagnostic_yellow" name="[Measures].[Wireless SSID Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelessssiddiagnostic_red" name="[Measures].[Wireless SSID Red]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelessstatusdiagnostic_green" name="[Measures].[Wireless Status Green]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelessstatusdiagnostic_yellow" name="[Measures].[Wireless Status Yellow]">
+        </AggMeasure>
+        <AggMeasure column="hsi_wirelessstatusdiagnostic_red" name="[Measures].[Wireless Status Red]">
+        </AggMeasure>
+        <AggMeasure column="voip_callquality_green" name="[Measures].[Call Quality Line 1 Green]">
+        </AggMeasure>
+        <AggMeasure column="voip_callquality_yellow" name="[Measures].[Call Quality Line 1 Yellow]">
+        </AggMeasure>
+        <AggMeasure column="voip_callquality_red" name="[Measures].[Call Quality Line 1 Red]">
+        </AggMeasure>
+        <AggMeasure column="voip_callqualityline1_green" name="[Measures].[Call Quality Line 2 Green]">
+        </AggMeasure>
+        <AggMeasure column="voip_callqualityline1_yellow" name="[Measures].[Call Quality Line 2 Yellow]">
+        </AggMeasure>
+        <AggMeasure column="voip_callqualityline1_red" name="[Measures].[Call Quality Line 2 Red]">
+        </AggMeasure>
+        <AggMeasure column="voip_callqualitypacketlost_green" name="[Measures].[VOIP Packet Loss Line 1 Green]">
+        </AggMeasure>
+        <AggMeasure column="voip_callqualitypacketlost_yellow" name="[Measures].[VOIP Packet Loss Line 1 Yellow]">
+        </AggMeasure>
+        <AggMeasure column="voip_callqualitypacketlost_red" name="[Measures].[VOIP Packet Loss Line 1 Red]">
+        </AggMeasure>
+        <AggMeasure column="voip_failedcallsline2_green" name="[Measures].[VOIP Failed Calls Line 2 Green]">
+        </AggMeasure>
+        <AggMeasure column="voip_failedcallsline2_yellow" name="[Measures].[VOIP Failed Calls Line 2 Yellow]">
+        </AggMeasure>
+        <AggMeasure column="voip_failedcallsline2_red" name="[Measures].[VOIP Failed Calls Line 2 Red]">
+        </AggMeasure>
+        <AggMeasure column="voip_packetlostline2_green" name="[Measures].[VOIP Packet Loss Line 2 Green]">
+        </AggMeasure>
+        <AggMeasure column="voip_packetlostline2_yellow" name="[Measures].[VOIP Packet Loss Line 2 Yellow]">
+        </AggMeasure>
+        <AggMeasure column="voip_packetlostline2_red" name="[Measures].[VOIP Packet Loss Line 2 Red]">
+        </AggMeasure>
+        <AggMeasure column="voip_percentfailedcalls_green" name="[Measures].[VOIP Failed Calls Line 1 Green]">
+        </AggMeasure>
+        <AggMeasure column="voip_percentfailedcalls_yellow" name="[Measures].[VOIP Failed Calls Line 1 Yellow]">
+        </AggMeasure>
+        <AggMeasure column="voip_percentfailedcalls_red" name="[Measures].[VOIP Failed Calls Line 1 Red]">
+        </AggMeasure>
+        <AggMeasure column="voip_statusline2_green" name="[Measures].[VOIP Status Line 2 Green]">
+        </AggMeasure>
+        <AggMeasure column="voip_statusline2_yellow" name="[Measures].[VOIP Status Line 2 Yellow]">
+        </AggMeasure>
+        <AggMeasure column="voip_statusline2_red" name="[Measures].[VOIP Status Line 2 Red]">
+        </AggMeasure>
+        <AggMeasure column="voip_voicestatusdiag_green" name="[Measures].[VOIP Status Line 1 Green]">
+        </AggMeasure>
+        <AggMeasure column="voip_voicestatusdiag_yellow" name="[Measures].[VOIP Status Line 1 Yellow]">
+        </AggMeasure>
+        <AggMeasure column="voip_voicestatusdiag_red" name="[Measures].[VOIP Status Line 1 Red]">
+        </AggMeasure>
+        <AggLevel column="year" name="[Time].[Year]" collapsed="true">
+        </AggLevel>
+        <AggLevel column="month" name="[Time].[Month]" collapsed="true">
+        </AggLevel>
+        <AggLevel column="day" name="[Time].[Day]" collapsed="true">
+        </AggLevel>
+        <AggLevel column="service_name" name="[Service].[Service]" collapsed="true">
+        </AggLevel>
+      </AggName>
+    </Table>
+    <DimensionUsage source="Element" name="Element" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Geography" name="Geography" visible="true" foreignKey="geo_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Hardware" name="Hardware" visible="true" foreignKey="hw_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Subscriber" name="Subscriber" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DNS" name="DNS" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="NTP" name="NTP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Service" name="Service" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SIP" name="SIP" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ElementTag" name="ElementTag" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SubscriberTag" name="SubscriberTag" visible="true" foreignKey="subscriber_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Time" name="Time" visible="true" foreignKey="time_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="CLLI" name="CLLI" visible="true" foreignKey="clli_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceGroup" name="DeviceGroup" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="DeviceClassifier" name="DeviceClassifier" visible="true" foreignKey="element_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="ACS URL" name="ACS URL" visible="true" foreignKey="acs_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Timezone" name="Timezone" visible="true" foreignKey="tz_id" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Element Count" column="element_id" datatype="Integer" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="Subscriber Count" column="subscriber_id" datatype="Integer" aggregator="distinct count" visible="true">
+    </Measure>
+    <Measure name="Less than 15 Minutes CPE Uptime Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_cpeuptime_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Less than 15 Minutes CPE Uptime Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_cpeuptime_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Less than 15 Minutes CPE Uptime Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_cpeuptime_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Downstream Bandwidth Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_downstreambandwidthdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Downstream Bandwidth Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_downstreambandwidthdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Downstream Bandwidth Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_downstreambandwidthdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="ES Errors Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_eserrorsdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="ES Errors Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_eserrorsdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="ES Errors Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_eserrorsdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Quarter Hour Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutquarterhourdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Quarter Hour Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutquarterhourdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Init Timeouts Quarter Hour Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_inittimeoutquarterhourdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Link Retrain Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_linkretraindiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Link Retrain Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_linkretraindiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Link Retrain Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_linkretraindiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="LOF Errors Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_loferrordiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="LOF Errors Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_loferrordiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="LOF Errors Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_loferrordiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Number of Hosts Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_numberofhosts_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Number of Hosts Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_numberofhosts_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Number of Hosts Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_numberofhosts_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Reboots in the Last Week Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_rebootsinthelastweek_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Reboots in the Last Week Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_rebootsinthelastweek_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Reboots in the Last Week Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_rebootsinthelastweek_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="SES Errors Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_seserrordiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="SES Errors Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_seserrordiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="SES Errors Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_seserrordiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy 2.4 GHz Wifi Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthy24_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy 2.4 GHz Wifi Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthy24_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy 2.4 GHz Wifi Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthy24_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy CPE Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthycpe_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy CPE Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthycpe_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy CPE Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthycpe_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy DSL Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthydsl_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy DSL Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthydsl_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unhealthy DSL Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unhealthydsl_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unsecured 2.4 GHz WiFi Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unsecure24_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unsecured 2.4 GHz WiFi Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unsecure24_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Unsecured 2.4 GHz WiFi Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_unsecure24_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Upstream Bandwidth Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_upstreambandwidthdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Upstream Bandwidth Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_upstreambandwidthdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Upstream Bandwidth Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(collectdiags_upstreambandwidthdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="CRC Errors Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_crcerrorsdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="CRC Errors Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_crcerrorsdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="CRC Errors Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_crcerrorsdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DHCP Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dhcpdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DHCP Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dhcpdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DHCP Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dhcpdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DNS Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dnsdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DNS Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dnsdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="DNS Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_dnsdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="FEC Errors Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_fecerrorsdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="FEC Errors Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_fecerrorsdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="FEC Errors Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_fecerrorsdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="High Upstream Utilization Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_highupstreamutilizationdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="High Upstream Utilization Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_highupstreamutilizationdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="High Upstream Utilization Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_highupstreamutilizationdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Latency Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_latencydiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Latency Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_latencydiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Latency Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_latencydiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Missing Microfilter Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_missingmicrofilterdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Missing Microfilter Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_missingmicrofilterdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Missing Microfilter Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_missingmicrofilterdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Total Wireless Associations Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_totalwirelessassociations_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Total Wireless Associations Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_totalwirelessassociations_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Total Wireless Associations Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_totalwirelessassociations_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Uptime Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_uptimediagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Uptime Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_uptimediagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Uptime Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_uptimediagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless PSK Failures Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesspskfailures_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless PSK Failures Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesspskfailures_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless PSK Failures Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesspskfailures_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Security Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesssecuritydiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Security Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesssecuritydiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Security Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelesssecuritydiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless SSID Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessssiddiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless SSID Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessssiddiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless SSID Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessssiddiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Status Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessstatusdiagnostic_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Status Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessstatusdiagnostic_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Wireless Status Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(hsi_wirelessstatusdiagnostic_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 1 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callquality_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 1 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callquality_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 1 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callquality_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 2 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualityline1_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 2 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualityline1_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Call Quality Line 2 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualityline1_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 1 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualitypacketlost_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 1 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualitypacketlost_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 1 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_callqualitypacketlost_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 2 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_failedcallsline2_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 2 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_failedcallsline2_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 2 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_failedcallsline2_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 2 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_packetlostline2_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 2 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_packetlostline2_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Packet Loss Line 2 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_packetlostline2_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 1 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_percentfailedcalls_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 1 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_percentfailedcalls_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Failed Calls Line 1 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_percentfailedcalls_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 2 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_statusline2_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 2 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_statusline2_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 2 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_statusline2_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 1 Green" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_voicestatusdiag_green as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 1 Yellow" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="false">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_voicestatusdiag_yellow as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="VOIP Status Line 1 Red" datatype="Numeric" formatString="#,##0.00" aggregator="avg" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[cast(voip_voicestatusdiag_red as int)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+  </Cube>
+</Schema>
